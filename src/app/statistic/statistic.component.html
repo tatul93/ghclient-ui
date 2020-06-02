@@ -1,0 +1,34 @@
+<div *ngIf="!!statistic" style="float: right; width: 600px; overflow: auto">
+
+  <h2>Statistic for {{statistic.repoName}} </h2>
+  <span>Users commiting in <b> {{statistic.repoName}}</b> </span><br>
+  <div *ngFor="let item of statistic.committers">
+    <b>Name: </b><span>{{item.name}} </span>
+    <b>E-mail: </b> <span> {{item.email}}</span>
+    <hr>
+  </div>
+  <br>
+  <br>
+  <h2>The commit report by time</h2>
+  <div *ngFor="let recipient of statistic.commitsTimeline | keyvalue">
+    <p><b> The commits did in {{recipient.key}} </b>  </p>
+
+    <div *ngFor="let item of recipient.value ">
+      <b>Name: </b><span>{{item.commiterName}} </span>
+      <b>Message: </b><span>{{item.message}} </span>
+      <b>Date: </b><span>{{item.date}} </span>
+      <hr>
+    </div>
+  </div>
+
+  <br>
+  <br>
+  <h2>The impact of user in the project by percent</h2>
+
+  <div *ngFor="let recipient of statistic.impact | keyvalue">
+    <p>User: <b>  {{recipient.key}} </b>  </p>
+    <b>Impact in percent: </b><span>{{recipient.value.percent}} /</span>
+    <b>Total number of commit: </b><span>{{recipient.value.count}} </span>
+    <br><hr>
+  </div>
+</div>
